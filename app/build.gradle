@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def properties = new Properties()
+def keystorePropertiesFile = rootProject.file("keys.properties")
+properties.load(new FileInputStream(keystorePropertiesFile))
+
+
+android {
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTools
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    defaultConfig {
+        applicationId "com.example.myapplication"
+        multiDexEnabled true
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+        versionCode versionCodeVal
+        versionName versionNameVal
+
+        archivesBaseName = "glnews-${versionName}"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", properties['BASE_URL_DEV']
+            minifyEnabled false
+        }
+        release {
+            buildConfigField "String", "BASE_URL", properties['BASE_URL_PROD']
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    packagingOptions {
+        exclude("META-INF/jersey-module-version")
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+        freeCompilerArgs += [
+                "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"]
+    }
+}
+
+androidExtensions {
+    features = ['parcelize']
+}
+
+dependencies {
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycleVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerVersion"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
+    implementation "com.jakewharton.timber:timber:$timber"
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
+
+    // Unit testing dependencies
+    testImplementation "junit:junit:$junit4Version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.ext:junit:$junitVersion"
+
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+}
+
