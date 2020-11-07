@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication">
+    package="com.kotlin.mvvm">
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
-        android:name=".BaseApplication"
+        android:name="com.kotlin.mvvm.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"
@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.feed.FeedListActivity">
+        <activity android:name="com.kotlin.mvvm.presentation.feed.FeedListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
