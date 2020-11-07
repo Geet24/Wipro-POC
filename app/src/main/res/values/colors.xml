@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#33333D</color>
+    <color name="colorPrimaryDark">#33333D</color>
+    <color name="colorAccent">#F44336</color>
+
+    <!-- grayscale -->
+    <color name="white">#ffffff</color>
+    <color name="lightGrey">#ebebeb</color>
+    <color name="blackOverlay33">#33000000</color>
+
+    <!--colors-->
+    <color name="orange">#ff5c35</color>
+    <color name="darkRed">#b00020</color>
+    <color name="brick">#e56953</color>
+</resources>
