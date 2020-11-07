@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_article"
@@ -17,6 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:paddingBottom="@dimen/sdp_8"
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.Guideline
@@ -35,13 +37,14 @@
 
             <ImageView
                 android:id="@+id/ivArticleImage"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/sdp_144"
+                android:layout_width="@dimen/sdp_144"
+                android:layout_height="@dimen/sdp_100"
                 android:contentDescription="@string/article_image"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
                 android:src="@drawable/ic_image_grey_24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintTop_toBottomOf="@id/tvArticleTitle" />
 
             <TextView
                 android:id="@+id/tvArticleTitle"
@@ -51,78 +54,26 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@string/article_title"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/orange"
                 android:textSize="@dimen/ssp_20"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/endGuideline"
                 app:layout_constraintStart_toStartOf="@id/startGuideline"
-                app:layout_constraintTop_toBottomOf="@id/ivArticleImage" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/tvArticleDescription"
                 android:layout_width="0dp"
+                android:textAlignment="textStart"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sdp_4"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:text="@string/article_description"
+                tools:text="A moose is a common sight in Canada. Tall and majestic, they represent many of the values which Canadians imagine that they possess. They grow up to 2.7 metres long and can weigh over 700 kg. They swim at 10 km/h. Moose antlers weigh roughly 20 kg. The plural of moose is actually 'meese', despite what most dictionaries, encyclopedias, and experts will tell you."
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/ssp_16"
-                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintEnd_toStartOf="@id/ivArticleImage"
                 app:layout_constraintStart_toStartOf="@id/startGuideline"
                 app:layout_constraintTop_toBottomOf="@id/tvArticleTitle" />
 
-            <TextView
-                android:id="@+id/tvSourceTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/sdp_8"
-                android:text="@string/source"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/ssp_16"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/startGuideline"
-                app:layout_constraintTop_toBottomOf="@id/tvArticleDescription" />
-
-            <TextView
-                android:id="@+id/tvSource"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/sdp_4"
-                android:text="@string/source_not_available"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/ssp_16"
-                app:layout_constraintEnd_toEndOf="@id/endGuideline"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/tvSourceTitle"
-                app:layout_constraintTop_toTopOf="@id/tvSourceTitle" />
-
-            <TextView
-                android:id="@+id/tvPublishedTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/sdp_8"
-                android:layout_marginBottom="@dimen/sdp_16"
-                android:text="@string/published_at"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/ssp_16"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/startGuideline"
-                app:layout_constraintTop_toBottomOf="@id/tvSourceTitle" />
-
-            <TextView
-                android:id="@+id/tvPublished"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/sdp_4"
-                android:text="@string/publish_time_not_available"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/ssp_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/tvPublishedTitle"
-                app:layout_constraintTop_toTopOf="@id/tvPublishedTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

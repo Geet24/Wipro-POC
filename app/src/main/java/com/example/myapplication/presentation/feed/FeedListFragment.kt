@@ -17,12 +17,8 @@ import com.example.myapplication.domain.entities.FeedEntity
 
 class FeedListFragment :
     BaseFragment<FragmentFeedListBinding, FeedListFragmentNavigator>(R.layout.fragment_feed_list) {
-    companion object {
-        fun newInstance() = FeedListFragment()
-    }
 
     private val feedListViewModel: FeedListViewModel by viewModels { viewModelFactory }
-    override fun swipeRefreshLayout(): SwipeRefreshLayout? = viewBinding.swipeRefreshLayout
     private val feedListAdapter: FeedListAdapter by lazy {
         FeedListAdapter()
     }
@@ -36,6 +32,8 @@ class FeedListFragment :
     override fun refreshView() {
         feedListViewModel.getFeeds()
     }
+
+    override fun swipeRefreshLayout(): SwipeRefreshLayout? = viewBinding.swipeRefreshLayout
 
     private fun initFeedListView() {
         val linearLayoutManager = LinearLayoutManager(activity)
@@ -51,11 +49,11 @@ class FeedListFragment :
                 when (apiResult) {
                     is AppResult.Success -> {
                         apiResult.data?.let { feedResponse ->
-                              handleSuccessFeedResponse(feedResponse)
+                            handleSuccessFeedResponse(feedResponse)
                         }
                     }
                     is AppResult.Failure -> {
-                       handleFailureFeedResponse()
+                        handleFailureFeedResponse()
                     }
                     is AppResult.Loading -> {
                         showSwipeRefresh()
@@ -71,11 +69,15 @@ class FeedListFragment :
     }
 
     private fun handleSuccessFeedResponse(feedResponse: FeedResponse) {
-        viewBinding.title.text= feedResponse.title
+        viewBinding.title.text = feedResponse.title
         feedListAdapter.refreshFeeds(feedResponse.feeds)
         hideSwipeRefresh()
         viewBinding.errorMsg.gone()
         viewBinding.rvNews.visible()
+    }
+
+    companion object {
+        fun newInstance() = FeedListFragment()
     }
 
 }
