@@ -11,14 +11,14 @@ import com.example.myapplication.domain.entities.FeedEntity
 import retrofit2.Response
 
 interface FeedsApi {
-    suspend fun getFeedsApi(): AppResult<List<FeedEntity>>
+    suspend fun getFeedsApi(): AppResult<FeedResponse>
 }
 
 class FeedsApiImpl(
     private val apiService: ApiService
 ) : FeedsApi {
 
-    override suspend fun getFeedsApi(): AppResult<List<FeedEntity>> {
+    override suspend fun getFeedsApi(): AppResult<FeedResponse> {
         var response: Response<FeedResponse>? = null
         var exception: Exception? = null
         try {
@@ -30,7 +30,7 @@ class FeedsApiImpl(
         return when (val result = ErrorMapper.checkAndMapError(response, exception)) {
             is RetrofitResult.Success -> {
                 result.data?.let {
-                    AppResult.Success(feedResponseMapper(result.data))
+                    AppResult.Success(result.data)
                 }?:kotlin.run {
                     AppResult.Failure(AppError(ErrorCodes.GENERIC_ERROR))
                 }

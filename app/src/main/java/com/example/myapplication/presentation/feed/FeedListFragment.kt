@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.example.myapplication.common.BaseFragment
 import com.example.myapplication.common.extension.gone
 import com.example.myapplication.common.extension.visible
+import com.example.myapplication.data.sources.api.model.response.FeedResponse
 import com.example.myapplication.databinding.FragmentFeedListBinding
 import com.example.myapplication.domain.AppResult
 import com.example.myapplication.domain.entities.FeedEntity
@@ -46,27 +47,35 @@ class FeedListFragment :
 
     private fun setUpObservers() {
         feedListViewModel.feedsLiveData.observe(viewLifecycleOwner,
-            Observer<AppResult<List<FeedEntity>>> { apiResult ->
+            Observer<AppResult<FeedResponse>> { apiResult ->
                 when (apiResult) {
                     is AppResult.Success -> {
-                        apiResult.data?.let { feedList ->
-                                feedListAdapter.refreshFeeds(feedList)
-                                hideSwipeRefresh()
-                                viewBinding.errorMsg.gone()
-                                viewBinding.rvNews.visible()
-
+                        apiResult.data?.let { feedResponse ->
+                              handleSuccessFeedResponse(feedResponse)
                         }
                     }
                     is AppResult.Failure -> {
-                        viewBinding.errorMsg.visible()
-                        viewBinding.rvNews.gone()
-                        hideSwipeRefresh()
+                       handleFailureFeedResponse()
                     }
                     is AppResult.Loading -> {
                         showSwipeRefresh()
                     }
                 }
             })
+    }
+
+    private fun handleFailureFeedResponse() {
+        viewBinding.errorMsg.visible()
+        viewBinding.rvNews.gone()
+        hideSwipeRefresh()
+    }
+
+    private fun handleSuccessFeedResponse(feedResponse: FeedResponse) {
+        viewBinding.title.text= feedResponse.title
+        feedListAdapter.refreshFeeds(feedResponse.feeds)
+        hideSwipeRefresh()
+        viewBinding.errorMsg.gone()
+        viewBinding.rvNews.visible()
     }
 
 }
