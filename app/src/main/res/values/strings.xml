@@ -1,12 +1,8 @@
     <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Wipro-POC</string>
         <string name="no_feeds_found">No feeds found</string>
         <string name="device_offline_error_message">You are not connected to the internet.</string>
         <string name="article_image">feed_image</string>
         <string name="article_title">Title</string>
         <string name="article_description">Description</string>
-        <string name="source">Source</string>
-        <string name="source_not_available">Source not available</string>
-        <string name="published_at">Published At</string>
-        <string name="publish_time_not_available">Not available</string>
     </resources>

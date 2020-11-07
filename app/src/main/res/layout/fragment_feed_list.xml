@@ -8,7 +8,7 @@
 
         <LinearLayout
             android:id="@+id/topBar"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="@dimen/sdp_46"
             android:background="@color/colorPrimary"
             android:elevation="@dimen/sdp_4"
@@ -29,8 +29,8 @@
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="@dimen/match_constraints"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +50,8 @@
 
                 <TextView
                     android:id="@+id/errorMsg"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="@dimen/match_constraints"
+                    android:layout_height="@dimen/match_constraints"
                     android:gravity="center"
                     android:text="@string/no_feeds_found"
                     android:textSize="@dimen/ssp_24"

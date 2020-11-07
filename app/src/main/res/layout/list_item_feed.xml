@@ -48,11 +48,11 @@
 
             <TextView
                 android:id="@+id/tvArticleTitle"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/match_constraints"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sdp_8"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="@integer/max_line_title"
                 android:text="@string/article_title"
                 android:textColor="@color/orange"
                 android:textSize="@dimen/ssp_20"
@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/tvArticleDescription"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/match_constraints"
                 android:textAlignment="textStart"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sdp_4"

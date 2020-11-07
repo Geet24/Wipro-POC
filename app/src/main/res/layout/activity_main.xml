@@ -10,8 +10,8 @@
 
         <FrameLayout
             android:id="@+id/fragmentContainer"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="@dimen/match_constraints"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +19,8 @@
 
         <include
             android:id="@+id/includeToast"
-            layout="@layout/app_toast"
-            android:layout_width="0dp"
+            layout="@layout/layout_app_toast"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/sdp_16"
@@ -32,8 +32,8 @@
 
         <include
             android:id="@+id/includeError"
-            layout="@layout/snack_error_view"
-            android:layout_width="0dp"
+            layout="@layout/layout_snack_error_view"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
